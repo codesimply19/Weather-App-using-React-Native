@@ -22,7 +22,6 @@ const WeatherDetailScreen = props => {
   useEffect(() => {
     const {location} = props.weatherInfo;
     const {latitude, longitude} = location;
-    console.log(location,'fewefx')
     props.weatherDetailActions.getWeatherDetails(latitude, longitude);
   }, []);
 
@@ -52,6 +51,7 @@ const WeatherDetailScreen = props => {
   const {error, loader, data} = props.weatherInfo;
   const {daily, current, timezone} = data;
   const date = current ? current.dt : '';
+  const temp = current ? current.temp : '0';
   const weather = daily?.filter((value, index) => index < 5);
   return error ? (
     <View style={{flex: 1}}>
@@ -64,7 +64,7 @@ const WeatherDetailScreen = props => {
         style={styles.imageStyle}
       />
       <View style={styles.mainView}>
-        <Text style={styles.tempText}>{`${current?.temp}°C`}</Text>
+        <Text style={styles.tempText}>{`${temp}°C`}</Text>
         <Text style={styles.cityText}>{timezone}</Text>
         <Text style={styles.dateText}>{convertDate(date, 1)}</Text>
       </View>
@@ -82,9 +82,6 @@ const WeatherDetailScreen = props => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   imageStyle: {
     flex: 1,
     resizeMode: 'stretch',

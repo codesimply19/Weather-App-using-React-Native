@@ -49,7 +49,6 @@ const AppNavigator = (props) => {
     locationSubscription = RNLocation.subscribeToLocationUpdates(
       locations => {
          setLocation(locations[0]);
-         console.log(locations[0],'feewenav')
         props.weatherDetailActions.getLocation(locations[0]);
         setTimeout(() => {
             setLoader(false);
