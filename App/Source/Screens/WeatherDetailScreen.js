@@ -68,7 +68,8 @@ const WeatherDetailScreen = props => {
         <Text style={styles.cityText}>{timezone}</Text>
         <Text style={styles.dateText}>{convertDate(date, 1)}</Text>
       </View>
-      <View style={styles.listView}>
+
+<View style={[{marginTop: Platform.OS ==='ios'? 150:80},styles.listView]}>
         <FlatList
           data={weather}
           renderItem={renderItem}
@@ -88,7 +89,6 @@ const styles = StyleSheet.create({
     height: height,
   },
   listView: {
-    marginTop: 150,
     marginBottom: 30,
   },
   mainView: {
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
   dateText: {
     fontSize: 30,
     color: 'brown',
-    marginTop: 80,
+    marginTop: 50,
   },
   tempText: {
     fontSize: 80,
